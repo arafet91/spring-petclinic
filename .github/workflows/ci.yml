@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main1 ]
   workflow_dispatch:
-
+    branches: [ main1 ]
 jobs:
   call-hello-template:
     uses: ./.github/workflows/hello-template.ymlS
