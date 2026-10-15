@@ -1,0 +1,16 @@
+name: "Salutation personnalisée"
+description: "Construit une salutation et expose le message en sortie."
+inputs:
+  username:
+    description: "Nom de la personne à saluer."
+    required: true
+  greeting:
+    description: "Texte de salutation."
+    required: false
+    default: "Bonjour"
+outputs:
+  message:
+    description: "Salutation complète générée."
+runs:
+  using: "node20"
+  main: "dist/index.js"

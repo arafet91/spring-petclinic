@@ -1,0 +1,14 @@
+name: "Docker Message Action"
+description: "Une action Docker qui génère et affiche un message personnalisé"
+inputs:
+  message:
+    description: "Le message à afficher"
+    required: true
+outputs:
+  output-message:
+    description: "Le message généré par l'action"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.message }}
