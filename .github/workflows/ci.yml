@@ -2,13 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main1 ]
   pull_request:
-    branches: [ main ]
+    branches: [ main1 ]
   workflow_dispatch:
 
 jobs:
   call-hello-template:
-    uses: ./.github/workflows/hello-template.yml
+    uses: ./.github/workflows/hello-template.ymlS
     with:
       username: Mona

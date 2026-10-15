@@ -2,7 +2,7 @@ name: "Exemple de workflow"
 on:
   push:
     branches:
-      - main
+      - main1
 
 jobs:
   greet-user:
