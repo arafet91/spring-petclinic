@@ -12,3 +12,27 @@ jobs:
     uses: ./.github/workflows/hello-template.yml
     with:
       username: Mona
+  update-gitops:
+    needs: build # Mettre ici le nom de votre job précédent (celui qui push sur GHCR)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cloner le dépôt d'infrastructure
+        uses: actions/checkout@v4
+        with:
+          repository: 'arafet91/kustomize' # A REMPLACER (ex: <VOTRE_USER_GITHUB>/gitops-infra)
+          token: ${{ secrets.GITOPS_PAT }}
+          path: 'infra-repo' # On clone dans un sous-dossier pour ne pas écraser l'espace de travail
+
+      - name: Mettre à jour la version de l'image
+        working-directory: ./infra-repo/dev
+        run: |
+          kustomize edit set image spring-petclinic=ghcr.io/arafet91/spring-petclinic:${{ github.sha }}
+
+      - name: Commit et Push vers le dépôt d'infrastructure
+        working-directory: ./infra-repo
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Auto-update image to tag ${{ github.sha }}"
+          git push
