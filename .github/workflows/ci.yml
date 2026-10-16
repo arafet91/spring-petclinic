@@ -2,11 +2,11 @@ name: CI
 
 on:
   push:
-    branches: [ main1 ]
+    branches: [ main ]
   pull_request:
-    branches: [ main1 ]
+    branches: [ main ]
   workflow_dispatch:
-    branches: [ main1 ]
+    branches: [ main ]
 jobs:
   call-hello-template:
     uses: ./.github/workflows/hello-template.yml
